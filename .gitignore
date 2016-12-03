@@ -22,3 +22,7 @@ Thumbs.db
 *.rar
 *.tar
 *.zip
+
+# Node.js Packages #
+####################
+node_modules
