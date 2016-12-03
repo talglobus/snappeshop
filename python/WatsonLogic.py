@@ -27,7 +27,13 @@ def process(x):
 #else:
 #    keyword = raw['images'][0]['classifiers'][0]['classes'][0]['class']
     keyword = raw['images'][0]['classifiers'][0]['classes'][0]['class']
-    return keyword
+    fetch(keyword)
+    
+def fetch(x):
+    returnvalue = ""
+    channel.basic_publish(exchange='',
+                      routing_key='queue',
+                      body=returnvalue)
     
 print("Working")
 channel.start_consuming()
