@@ -1,0 +1,27 @@
+{
+  "name": "snappeshop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node web/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/talglobus/snappeshop.git"
+  },
+  "dependencies": {
+    "express": "4.14.0"
+  },
+  "engines": {
+    "node": "6.6.0",
+    "npm": "3.10.3"
+  }
+  "author": "Tal Globus <talglobus@gmail.com>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/talglobus/snappeshop/issues"
+  },
+  "homepage": "https://github.com/talglobus/snappeshop#readme"
+}
