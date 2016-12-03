@@ -11,6 +11,6 @@ module.exports = (dataURI) => {
 	let filePath = "./images/" + randomID(24) + ".png";
 	imageDataURI.outputFile(dataURI, filePath)
     .then(res => {
-    	console.log(res)
+    	console.log(res);	// This is what to do with the new file of name "res";
     });
 }
