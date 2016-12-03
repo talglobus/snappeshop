@@ -40,6 +40,37 @@ app.get('/', function (req, res) {
 	console.log("main");
 });
 
+app.get('/', function (req, res) {
+	const FILE = dirPrefix + "/index.html";
+
+	res.statusCode = 200;
+
+	var options = {
+		root: __dirname,
+		dotfiles: 'deny',
+		headers: {
+			"Content-Type": "text/html",
+			'x-timestamp': Date.now(),
+			'x-sent': true
+		}
+	};
+    
+    console.log(req.url);
+
+	res.sendFile(FILE, options, function (err) {
+		if (err) {
+			// console.log(err);
+			res.status(err.status).end();
+		}
+		else {
+			console.log('Sent:', FILE);
+			res.end();
+		}
+	});
+
+	console.log("main");
+});
+
 //app.get('/logo.png', function(req, res) {
 //
 //	const FILE = path.join(__dirname + "/logo.png");
@@ -70,20 +101,20 @@ app.get('/', function (req, res) {
 //});
 //
 app.get('/images/*', function (req, res) {
-	allowServeFromDir(req, res, 'jpg');
+	allowServeFromDir(req, res, 'png');
 });
 
-app.get('/js/*', function (req, res) {
-	allowServeFromDir(req, res, 'js');
-});
+// app.get('/js/*', function (req, res) {
+// 	allowServeFromDir(req, res, 'js');
+// });
 
-app.get('/css/*', function (req, res) {
-	allowServeFromDir(req, res, 'css');
-});
+// app.get('/css/*', function (req, res) {
+// 	allowServeFromDir(req, res, 'css');
+// });
 
-app.get('/fonts/*', function (req, res) {
-	allowServeFromDir(req, res, 'font');
-});
+// app.get('/fonts/*', function (req, res) {
+// 	allowServeFromDir(req, res, 'font');
+// });
 
 //app.get('/welcome/*', function(req, res) {
 //	var phone = req.url.split('/')[2];
@@ -105,8 +136,8 @@ app.listen(PORT, function () {
 
 function allowServeFromDir(req, res, type) {
 	var headerMIME = "text/html";     // This is a dangerous case, as it leaves html default
-	if (type == 'jpg') {
-		headerMIME = "image/jpeg";
+	if (type == 'png') {
+		headerMIME = "image/png";
 	} else if (type == 'js') {
 		headerMIME = "application/javascript";
 	} else if (type == 'css') {
