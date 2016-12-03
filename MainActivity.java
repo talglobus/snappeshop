@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
     
     
-
+//WE AREN'T SURE THAT THIS WORKS. Not sure if returning yourUri.
 
     public Uri returnUri(File imageFile) {
 
