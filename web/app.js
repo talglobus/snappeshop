@@ -122,7 +122,7 @@ app.post('/imagesearch', (req, res) => {
 //	});
 //});
 //
-app.get('/retrieve/*', function (req, res) {
+app.get('/images/*', function (req, res) {
 	allowServeFromDir(req, res, 'png');
 });
 
