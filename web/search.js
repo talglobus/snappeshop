@@ -25,7 +25,7 @@ function randomID(len) {
 }
 
 function waitForID(id, cb) {	// This function delays until results appear, and "cb"s them
-	setTimeout(() =>
+	setTimeout(() => {
 		if (results[ID_APPEND + id] === undefined) {
 			waitForID(id);
 		} else {

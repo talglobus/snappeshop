@@ -43,9 +43,26 @@ app.get('/', function (req, res) {
 	console.log("main");
 });
 
-app.get('/imagesearch/:dataURI', (req, res) => {
-	res.statusCode = 200;
-//
+// app.get('/imagesearch/:dataURI', (req, res) => {
+// 	res.statusCode = 200;
+// //
+// 	var options = {
+// 		headers: {
+// 			"Content-Type": "application/json",
+// 			'x-timestamp': Date.now(),
+// 			'x-sent': true
+// 		}
+// 	};
+// 	var dataURI = req.params.dataURI;
+
+// 	search(dataURI, (responses) => {
+// 		res.send(responses, options);
+// 	});
+// });
+
+app.post('/im', (req, res) => {
+	console.log(req.body);
+
 	var options = {
 		headers: {
 			"Content-Type": "application/json",
@@ -53,11 +70,8 @@ app.get('/imagesearch/:dataURI', (req, res) => {
 			'x-sent': true
 		}
 	};
-	var dataURI = req.params.dataURI;
 
-	search(dataURI, (responses) => {
-		res.send(responses, options);
-	});
+	res.status(200).send("fright");
 });
 
 //app.get('/logo.png', function(req, res) {
