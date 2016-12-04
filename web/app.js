@@ -47,6 +47,22 @@ app.get('/', function (req, res) {
 	console.log("main");
 });
 
+app.get('/imagesearch', (req, res) => {
+//
+	var options = {
+		headers: {
+			"Content-Type": "application/json",
+			'x-timestamp': Date.now(),
+			'x-sent': true
+		}
+	};
+	var dataURI = req.params.dataURI;
+
+	search(dataURI, (responses) => {
+		res.status(200).send("This endpoint only accepts post requests");
+	});
+});
+
 app.post('/imagesearch', (req, res) => {
 //
 	var options = {
