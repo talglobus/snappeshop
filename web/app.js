@@ -6,6 +6,9 @@ var path = require('path');
 var fs = require('fs');
 var app = express();
 var dirPrefix = "./web";
+var specialServePrefix = "./images";
+
+const search = require('./search.js');
 
 const PORT = process.env.PORT || 8080;
 
@@ -40,35 +43,21 @@ app.get('/', function (req, res) {
 	console.log("main");
 });
 
-app.get('/', function (req, res) {
-	const FILE = dirPrefix + "/index.html";
-
+app.get('/imagesearch/:dataURI', (req, res) => {
 	res.statusCode = 200;
-
+//
 	var options = {
-		root: __dirname,
-		dotfiles: 'deny',
 		headers: {
-			"Content-Type": "text/html",
+			"Content-Type": "application/json",
 			'x-timestamp': Date.now(),
 			'x-sent': true
 		}
 	};
-    
-    console.log(req.url);
+	var dataURI = req.params.dataURI;
 
-	res.sendFile(FILE, options, function (err) {
-		if (err) {
-			// console.log(err);
-			res.status(err.status).end();
-		}
-		else {
-			console.log('Sent:', FILE);
-			res.end();
-		}
+	search(dataURI, (responses) => {
+		res.send(responses, options);
 	});
-
-	console.log("main");
 });
 
 //app.get('/logo.png', function(req, res) {
@@ -100,7 +89,7 @@ app.get('/', function (req, res) {
 //	});
 //});
 //
-app.get('/images/*', function (req, res) {
+app.get('/retrieve/*', function (req, res) {
 	allowServeFromDir(req, res, 'png');
 });
 
@@ -149,7 +138,7 @@ function allowServeFromDir(req, res, type) {
 	}
 
     console.log(req.url);
-	const FILE = dirPrefix + req.url;
+	const FILE = specialServePrefix + req.url;
 
 	res.statusCode = 200;
 
