@@ -122,8 +122,30 @@ app.post('/imagesearch', (req, res) => {
 //	});
 //});
 //
-app.get('/images/*', function (req, res) {
-	allowServeFromDir(req, res, 'png');
+app.get('/images/:image', function (req, res) {
+	// allowServeFromDir(req, res, 'png');
+
+	var options = {
+			root: __dirname,
+			dotfiles: 'deny',
+			headers: {
+				"Content-Type": "image/png",
+				'x-timestamp': Date.now(),
+				'x-sent': true
+			}
+		};
+
+	res.sendFile("./images/77b80e47ae5f3eb37123591d.png", options, function (err) {
+		if (err) {
+			console.log("An error occurred while attempting to serve " + FILE);
+			// console.log(err);
+			res.status(err.status).end();
+		}
+		else {
+			console.log('Sent:' + FILE);
+			res.end();
+		}
+	});
 });
 
 // app.get('/js/*', function (req, res) {
