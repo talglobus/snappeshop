@@ -135,14 +135,14 @@ app.get('/images/:image', function (req, res) {
 			}
 		};
 
-	res.sendFile("./images/77b80e47ae5f3eb37123591d.png", options, function (err) {
+	res.sendFile("/web/images/77b80e47ae5f3eb37123591d.png", options, function (err) {
 		if (err) {
-			console.log("An error occurred while attempting to serve " + FILE);
+			console.log("An error occurred while attempting to serve the whims of the people");
 			// console.log(err);
 			res.status(err.status).end();
 		}
 		else {
-			console.log('Sent:' + FILE);
+			console.log("Sent the tears of dreams long dead");
 			res.end();
 		}
 	});
