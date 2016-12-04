@@ -12,6 +12,10 @@ const search = require('./search.js');
 
 const PORT = process.env.PORT || 8080;
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
 app.get('/', function (req, res) {
 	const FILE = dirPrefix + "/index.html";
 
@@ -43,26 +47,8 @@ app.get('/', function (req, res) {
 	console.log("main");
 });
 
-// app.get('/imagesearch/:dataURI', (req, res) => {
-// 	res.statusCode = 200;
-// //
-// 	var options = {
-// 		headers: {
-// 			"Content-Type": "application/json",
-// 			'x-timestamp': Date.now(),
-// 			'x-sent': true
-// 		}
-// 	};
-// 	var dataURI = req.params.dataURI;
-
-// 	search(dataURI, (responses) => {
-// 		res.send(responses, options);
-// 	});
-// });
-
-app.post('/im', (req, res) => {
-	console.log(req.body);
-
+app.post('/imagesearch', (req, res) => {
+//
 	var options = {
 		headers: {
 			"Content-Type": "application/json",
@@ -70,9 +56,26 @@ app.post('/im', (req, res) => {
 			'x-sent': true
 		}
 	};
+	var dataURI = req.params.dataURI;
 
-	res.status(200).send("fright");
+	search(dataURI, (responses) => {
+		res.status(200).send(responses, options);
+	});
 });
+
+// app.post('/im', (req, res) => {
+// 	console.log(req.body);
+
+// 	var options = {
+// 		headers: {
+// 			"Content-Type": "application/json",
+// 			'x-timestamp': Date.now(),
+// 			'x-sent': true
+// 		}
+// 	};
+
+// 	res.status(200).send("fright");
+// });
 
 //app.get('/logo.png', function(req, res) {
 //

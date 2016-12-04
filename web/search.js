@@ -1,5 +1,6 @@
 const crypto = require('crypto');
 const jackrabbit = require('jackrabbit');
+const imageDataURI = require('image-data-uri');
 
 const ID_APPEND = 'T';
 
@@ -36,7 +37,8 @@ function waitForID(id, cb) {	// This function delays until results appear, and "
 
 module.exports = (dataURI, bigCB) => {
 	dataURI = "data:image/png;base64," + dataURI;	// Not sure if this format is correct
-	let key = randomID(24);
+	// let key = randomID(24);
+	key = "858c306f1bb53cf33dc4ff25";
 	let filePath = "./images/" + key + ".png";
 	imageDataURI.outputFile(dataURI, filePath)
     .then(res => {
